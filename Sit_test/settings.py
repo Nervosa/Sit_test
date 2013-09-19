@@ -1,11 +1,13 @@
 # Django settings for Sit_test project.
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
+
+ALLOWED_HOSTS = ['127.0.0.1',]
 
 MANAGERS = ADMINS
 
@@ -117,7 +119,22 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'products',
+    'colorfield',
 )
+from django.conf import global_settings
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.core.context_processors.tz',
+#    'django.core.context_processors.request',
+    'django.contrib.messages.context_processors.messages',
+    'products.custom_context_processors.add_settings_to_context',
+)
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
