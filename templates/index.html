@@ -1,5 +1,31 @@
-{% if DEBUG %}
-    we're in debug mode
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% if prods %}
+<div class="panel panel-default" style="margin: 10px;">
+    <div class="panel-heading text-center"><h3>Our products</h3></div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Height</th>
+            <th>Weight</th>
+            <th>Color</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for prod in prods %}
+            <tr>
+            <td>{{ prod.title }}</td>
+            <td>{{ prod.height }}</td>
+            <td>{{ prod.weight }}</td>
+            <td>{{ prod.color }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% else %}
-    we're not debugging
+    <p>There are no products.</p>
 {% endif %}
