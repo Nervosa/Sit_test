@@ -13,6 +13,7 @@
             <th>Height</th>
             <th>Weight</th>
             <th>Color</th>
+            <th>Photo</th>
         </tr>
         </thead>
 
@@ -23,6 +24,7 @@
             <td>{{ prod.height }}</td>
             <td>{{ prod.weight }}</td>
             <td>{{ prod.color }}</td>
+            <td><img src="{% thumbnail prod.photo 200x200 scale %}"/></td>
             </tr>
         {% endfor %}
         </tbody>

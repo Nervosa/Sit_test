@@ -127,14 +127,17 @@ INSTALLED_APPS = (
     'bootstrap3',
     'south',
     'easy_thumbnails',
-    'grappelli',
+    'PIL',
+
 )
 
 THUMBNAIL_ALIASES = {
     '': {
-        'tiny_photo':{'size':(50, 50), 'crop': True},
+        'tiny_photo':{'size':(50, 50), 'crop': 'scale'},
     },
 }
+
+THUMBNAIL_DEBUG = True
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',

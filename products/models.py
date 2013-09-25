@@ -9,8 +9,8 @@ class Product(models.Model):
     height = models.FloatField(max_length=10)
     weight = models.FloatField(max_length=10)
     color = models.CharField(max_length=7)
-    photo = models.ImageField(upload_to='uploads/products_photo')
-    thumbnail = models.ImageField(upload_to='uploads/products_photo_thumbnails', blank=True)
+    photo = models.ImageField(upload_to='uploads/products_photo', blank=True)
+    thumbnail = ThumbnailerImageField(upload_to='uploads/products_photo_hurr', blank=True)
 
     def __unicode__(self):
         return self.title
