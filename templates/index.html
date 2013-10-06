@@ -2,33 +2,37 @@
 {% load bootstrap3 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
+{% load static %}
+
+<link rel="stylesheet" href="/static/customizing.css">
 
 {% if prods %}
 <div class="panel panel-default" style="margin: 10px;">
-    <div class="panel-heading text-center"><h3>Our products</h3></div>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Title</th>
-            <th>Height</th>
-            <th>Weight</th>
-            <th>Color</th>
-            <th>Photo</th>
-        </tr>
-        </thead>
-
-        <tbody>
+    <div class="panel-heading"><h3>Products</h3></div>
         {% for prod in prods %}
-            <tr>
-            <td>{{ prod.title }}</td>
-            <td>{{ prod.height }}</td>
-            <td>{{ prod.weight }}</td>
-            <td>{{ prod.color }}</td>
-            <td><img src="{% thumbnail prod.photo 200x200 scale %}"/></td>
-            </tr>
+        <div class="container">
+            <div class="panel-heading">
+                <div class="row"><h1>{{ prod.title }}</h1></div>
+            </div>
+            <div class="row">
+                <div id="photo" class="col-md-3"><img src="{{ prod.photo|thumbnail_url:'tiny_photo' }}"/></div>
+                <div class="col-md-2"><b>Height: </b>{{ prod.height }}</div>
+                <div class="col-md-2"><b>Weight: </b>{{ prod.weight }}</div>
+                <div class="col-md-2"><b>Color: </b>{{ prod.color }}</div>
+                <div id="desc" class="col-md-8"><b>Description: </b><pre>{{ prod.description }}</pre></div>
+            </div>
+        </div>
         {% endfor %}
-        </tbody>
-    </table>
+</div>
+<div class="text-center">
+    <ul class="pagination">
+    <p>Page {{ prods.number }}</p>
+    <li id="prev"><a href="#">&laquo;</a></li>
+        {% for pg in prods.paginator.page_range %}
+          <li><a href="?page={{ pg }}">{{ pg }}</a></li>
+        {% endfor %}
+    <li id="next"><a href="#">&raquo;</a></li>
+    </ul>
 </div>
 {% else %}
     <p>There are no products.</p>

@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: url("img/sprinkles.png") repeat;
+}
+
+#desc {
+    margin-top: 2em;
+}
+
+#photo {
+    margin-bottom: 2em;
+}
+
+li#prev {
+    border-radius: 0;
+}
+
+li#next {
+    border-radius: 0;
+}
