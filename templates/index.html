@@ -27,11 +27,19 @@
 <div class="text-center">
     <ul class="pagination">
     <p>Page {{ prods.number }}</p>
-    <li id="prev"><a href="#">&laquo;</a></li>
-        {% for pg in prods.paginator.page_range %}
-          <li><a href="?page={{ pg }}">{{ pg }}</a></li>
-        {% endfor %}
-    <li id="next"><a href="#">&raquo;</a></li>
+    {% if prods.has_previous %}
+        <li id="prev"><a href="?page={{ prods.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+        <li id="prev" class="disabled"><a href="#">&laquo;</a></li>
+    {% endif %}
+            {% for pg in prods.paginator.page_range %}
+              <li><a href="?page={{ pg }}">{{ pg }}</a></li>
+            {% endfor %}
+    {% if prods.has_next %}
+        <li id="next"><a href="?page={{ prods.next_page_number }}">&raquo;</a></li>
+    {% else %}
+        <li id="next" class="disabled"><a href="#">&raquo;</a></li>
+    {% endif %}
     </ul>
 </div>
 {% else %}
