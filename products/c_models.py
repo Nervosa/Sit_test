@@ -3,12 +3,14 @@ from easy_thumbnails.signals import saved_file
 from easy_thumbnails.signal_handlers import generate_aliases_global
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
+from django.core.validators import RegexValidator
+
 
 class Product(models.Model):
     title = models.CharField(max_length=50)
     height = models.FloatField(max_length=10)
     weight = models.FloatField(max_length=10)
-    color = models.CharField(max_length=7)
+    color = models.CharField(max_length=7, validators=[RegexValidator(regex='^\#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$', message='Enter valid color value prepended by "#"')])
     photo = models.ImageField(upload_to='products_photo', blank=True)
     description = models.TextField(max_length=1000)
 
@@ -16,7 +18,7 @@ class Product(models.Model):
         return self.title
 
     def display_photo(self):
-        return '<img src="%s" />' % (self.photo.url)
+        return '<img src="%s" />' % self.photo.url
 
     display_photo.short_description = 'Photo of a product'
     display_photo.allow_tags = True

@@ -11,11 +11,3 @@ body {
 #photo {
     margin-bottom: 2em;
 }
-
-li#prev {
-    border-radius: 0;
-}
-
-li#next {
-    border-radius: 0;
-}

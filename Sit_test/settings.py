@@ -9,13 +9,13 @@ ADMINS = (
 
 SHOW_HELP = True
 
-ALLOWED_HOSTS = ['127.0.0.1',]
+ALLOWED_HOSTS = ['127.0.0.1', ]
 
 MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'products_db',                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
@@ -90,7 +90,7 @@ SECRET_KEY = '@iwc14ls)7m%t@5#80w+d#q(3=p5c__(o5cy(he9hlg3t15rwv'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    # 'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -109,7 +109,7 @@ ROOT_URLCONF = 'Sit_test.urls'
 WSGI_APPLICATION = 'Sit_test.wsgi.application'
 
 import os
-TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), '..', 'templates').replace('\\','/'),)
+TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), '..', 'templates').replace('\\', '/'),)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -128,12 +128,11 @@ INSTALLED_APPS = (
     'south',
     'easy_thumbnails',
     'PIL',
-
 )
 
 THUMBNAIL_ALIASES = {
     '': {
-        'tiny_photo':{'size':(200, 200), 'crop': 'scale'},
+        'tiny_photo': {'size': (200, 200), 'crop': 'scale'},
     },
 }
 
@@ -146,7 +145,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'django.core.context_processors.static',
     'django.core.context_processors.tz',
-#   'django.core.context_processors.request',
+    'django.core.context_processors.request',
     'django.contrib.messages.context_processors.messages',
     'products.custom_context_processors.add_settings_to_context',
 
