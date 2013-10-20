@@ -11,3 +11,6 @@ class ColorWidget(TextInput):
               '/static/js/create_colorpicker.js',
               '/static/js/bootstrap-colorpicker.js',
         )
+
+    def render(self, name, value, attrs=None):
+        pass
