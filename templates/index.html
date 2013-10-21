@@ -19,7 +19,7 @@
                 <div class="row"><h1>{{ prod.title }}</h1></div>
             </div>
             <div class="row">
-                <div id="photo" class="col-md-3"><img src="{{ prod.photo|thumbnail_url:'tiny_photo' }}"/></div>
+                <div id="photo" class="col-md-3"><img class="img-thumbnail" src="{{ prod.photo|thumbnail_url:'tiny_photo' }}"/></div>
                 <div class="col-md-2"><b>Height: </b>{{ prod.height }}</div>
                 <div class="col-md-2"><b>Weight: </b>{{ prod.weight }}</div>
                 <div class="col-md-2"><b>Color: </b><i style="background-color: {{ prod.color }}; width: 5px; height: 5px;">&nbsp&nbsp&nbsp&nbsp</i></div>
