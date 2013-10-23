@@ -1,11 +1,18 @@
 # Django settings for Sit_test project.
-
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Nervosa', 'Nervosa@tut.by'),
 )
+
+SERVER_EMAIL = "Sit_test@tut.by"
+EMAIL_HOST = "smtp.googlemail.com"
+EMAIL_PORT = 25
+EMAIL_HOST_USER = "Sit_test@tut.by"
+EMAIL_HOST_PASSWORD = "sitorium_test"
+EMAIL_USE_SSL = True
+EMAIL_USE_TLS = True
 
 SHOW_HELP = True
 

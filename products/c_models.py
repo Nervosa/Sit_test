@@ -1,7 +1,8 @@
+from django.core.mail import mail_admins
 from django.db import models
 from easy_thumbnails.signals import saved_file
 from easy_thumbnails.signal_handlers import generate_aliases_global
-from django.db.models.signals import post_delete
+from django.db.models.signals import post_delete, post_save, post_init
 from django.dispatch import receiver
 from django.core.validators import RegexValidator
 
@@ -27,5 +28,27 @@ class Product(models.Model):
 @receiver(post_delete, sender=Product)
 def photo_post_delete(sender, **kwargs):
     prod = kwargs['instance']
-    storage, path = prod.photo.storage, prod.photo.path
-    storage.delete(path)
+    try:
+        storage, path = prod.photo.storage, prod.photo.path
+        storage.delete(path)
+    except:
+        pass
+    mail_admins(subject="An object deleted.", message="An old thing was deleted!!!")
+
+@receiver(post_save, sender=Product)
+def send_email_when_something_changed(sender, **kwargs):
+    try:
+        if kwargs['created']:
+            mail_admins(subject="An object created.", message="A new thing was born!")
+        if not kwargs['created']:
+            mail_admins(subject="An object changed.", message="An old thing was changed!")
+    except:
+        mail_admins(subject="Warning", message="Something happened!")
+
+@receiver(post_init, sender=Product)
+def send_email_when_creating(sender, **kwargs):
+    try:
+        if kwargs['created']:
+            mail_admins(subject="A product created!", message="I don lie!")
+    except:
+        pass

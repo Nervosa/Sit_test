@@ -1,7 +1,7 @@
 from products.c_models import Product
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render_to_response
-
+from Sit_test import settings
 
 def home(request):
 
