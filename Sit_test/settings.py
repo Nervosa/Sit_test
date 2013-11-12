@@ -97,7 +97,7 @@ SECRET_KEY = '@iwc14ls)7m%t@5#80w+d#q(3=p5c__(o5cy(he9hlg3t15rwv'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-    # 'django.template.loaders.eggs.Loader',
+    'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -135,7 +135,12 @@ INSTALLED_APPS = (
     'south',
     'easy_thumbnails',
     'PIL',
+    'registration',
+    'registration_bootstrap',
+    'crispy_forms',
 )
+
+ACCOUNT_ACTIVATION_DAYS = 1
 
 THUMBNAIL_ALIASES = {
     '': {
@@ -154,10 +159,11 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.tz',
     'django.core.context_processors.request',
     'django.contrib.messages.context_processors.messages',
-    'products.custom_context_processors.add_settings_to_context',
+    'products.c_context_processors.add_settings_to_context',
 
 )
 
+LOGIN_REDIRECT_URL = "/"
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
