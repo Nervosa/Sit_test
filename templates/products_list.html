@@ -3,6 +3,7 @@
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 {% load static %}
+{% load future %}
 
 <link rel="stylesheet" href="/static/customizing.css">
 <link rel="stylesheet" href="/static/css/bootstrap2.css">
@@ -12,7 +13,13 @@
 
 {% if prods %}
 <div class="panel panel-default" style="margin: 10px;">
-    <div class="panel-heading"><h3>Products</h3></div>
+    <div class="panel-heading"><h3>Products</h3>
+    {% if current_user_activeness %}
+        <span>Logged in as: {{ current_user }}.<a href="/logout/">Logout</a></span>
+    {% else %}
+        <span>Not logged in.</span><a href="/accounts/login/">Login</a> or <a href="/accounts/register/">Register</a>
+    {% endif %}
+    </div>
         {% for prod in prods %}
         <div class="container">
             <div class="panel-heading">
