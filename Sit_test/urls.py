@@ -7,14 +7,15 @@ from django.conf.urls.static import static
 
 admin.autodiscover()
 
-urlpatterns = patterns('',
-    url(r'^$', views.home),
+urlpatterns = patterns('products.views',
+    url(r'^$', views.home()),
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('registration.backends.default.urls')),
+    url(r'^product_edit/(?P<product_id>\d+)', views.edit_product),
     url(r'^logout/', logout)
 )
 
@@ -23,8 +24,4 @@ if settings.DEBUG:
         url(r'^uploads/(?P<path>.*)$', 'django.views.static.serve', {
             'document_root': settings.MEDIA_ROOT,
         }),
-
-        #url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
-        #    'document_root': settings.STATIC_ROOT,
-        #}),
     ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

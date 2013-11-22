@@ -1,15 +1,14 @@
 {% load thumbnail %}
 {% load bootstrap3 %}
 {% bootstrap_css %}
-{% bootstrap_javascript %}
 {% load static %}
 {% load future %}
 
 <link rel="stylesheet" href="/static/customizing.css">
-<link rel="stylesheet" href="/static/css/bootstrap2.css">
+<!--<link rel="stylesheet" href="/static/css/bootstrap2.css">-->
 <link rel="stylesheet" href="/static/css/colorpicker.css">
 <script src="/static/js/bootstrap-colorpicker.js" type="text/javascript"></script>
-<script src="/static/js/jquery.js" type="text/javascript"></script>
+
 
 {% if prods %}
 <div class="panel panel-default" style="margin: 10px;">
@@ -26,15 +25,23 @@
                 <div class="row"><h1>{{ prod.title }}</h1></div>
             </div>
             <div class="row">
+            {% if prod.photo %}
                 <div id="photo" class="col-md-3"><img class="img-thumbnail" src="{{ prod.photo|thumbnail_url:'tiny_photo' }}"/></div>
+            {% else %}
+                <div id="photo" class="col-md-3"><img class="img-thumbnail" src="{% static 'img/no-photo.jpg' %}"/></div>
+            {% endif %}
                 <div class="col-md-2"><b>Height: </b>{{ prod.height }}</div>
                 <div class="col-md-2"><b>Weight: </b>{{ prod.weight }}</div>
                 <div class="col-md-2"><b>Color: </b><i style="background-color: {{ prod.color }}; width: 5px; height: 5px;">&nbsp&nbsp&nbsp&nbsp</i></div>
                 <div id="desc" class="col-md-8"><b>Description: </b><pre>{{ prod.description }}</pre></div>
+                {% if current_user.is_staff %}
+                    <a href="{% url "products.views.edit_product" product_id=prod.id %}" id={{ prod.id }} role="button" class="btn btn-primary btn-lg" data-toggle="modal">Edit this product</a>
+                {% endif %}
             </div>
         </div>
         {% endfor %}
 </div>
+
 <div class="text-center">
     <ul class="pagination">
     <p>Page {{ prods.number }}</p>
@@ -53,6 +60,10 @@
     {% endif %}
     </ul>
 </div>
+
 {% else %}
     <p>There are no products.</p>
 {% endif %}
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+{% bootstrap_javascript %}

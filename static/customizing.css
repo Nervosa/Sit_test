@@ -11,3 +11,7 @@ body {
 #photo {
     margin-bottom: 2em;
 }
+
+#productEditModal {
+    overflow-y: hidden;
+}

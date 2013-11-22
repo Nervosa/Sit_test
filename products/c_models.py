@@ -21,6 +21,8 @@ class Product(models.Model):
     def display_photo(self):
         return '<img src="%s" />' % self.photo.url
 
+
+
     display_photo.short_description = 'Photo of a product'
     display_photo.allow_tags = True
     saved_file.connect(generate_aliases_global)
