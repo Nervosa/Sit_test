@@ -1,0 +1,26 @@
+{% load static %}
+<link rel="stylesheet" href="/static/css/bootstrap2.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#productEditForm').ajaxForm(function() {
+            alert("Product with id {{ product.id }} saved.");
+            window.location.assign("/");
+        });
+    });
+</script>
+
+<h1>You're editing Product with ID={{ product.id }}</h1>
+<form enctype="multipart/form-data" method="POST" action="/product_edit/{{ product.id }}" id="productEditForm">
+
+        {% csrf_token %}
+        {% if product.photo %}
+            <img src="{{ product.photo.url }}">
+        {% else %}
+            <img src=" {% static 'img/no-photo.jpg' %}">
+        {% endif %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+
+</form>
