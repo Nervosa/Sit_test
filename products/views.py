@@ -29,10 +29,11 @@ def home(request):
             products = paginator.page(paginator.num_pages)
         except PageNotAnInteger:
             products = paginator.page(1)
-        return render_to_response('products_list.html', {"prods": products,
-                                                         "current_user_activeness": request.user.is_active,
-                                                         "current_user": request.user,
-                                                         })
+        return render_to_response('products_list.html', {
+            "prods": products,
+            "current_user_activeness": request.user.is_active,
+            "current_user": request.user
+        })
 
 
 def edit_product(request, product_id):
